@@ -707,8 +707,6 @@ public class ModelImpTest {
       }
     }
   }
-//<<<<<<< Updated upstream
-//=======
 
   @Test
   public void testSplitCorrectnessDithering() {
@@ -818,6 +816,4 @@ public class ModelImpTest {
       }
     }
   }
-
-//>>>>>>> Stashed changes
 }
