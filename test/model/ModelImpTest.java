@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -762,7 +761,7 @@ public class ModelImpTest {
     }
   }
 
-  @Test (expected = NullPointerException.class)
+  @Test(expected = NullPointerException.class)
   public void testSplitCorrectnessDitheringLowBound() {
     model.splitImage("image", "image-c", -50, "dither");
     int[][][] actual = model.getFromMap("image-c");
@@ -780,7 +779,7 @@ public class ModelImpTest {
     }
   }
 
-  @Test (expected = NullPointerException.class)
+  @Test(expected = NullPointerException.class)
   public void testSplitCorrectnessDitheringHighBound() {
     model.splitImage("image", "image-c", 500, "dither");
     int[][][] actual = model.getFromMap("image-c");

@@ -4,15 +4,15 @@ load Nature.jpg natImage
 # Dither
 dither resImage ditherResImage
 dither natImage ditherNatImage
-save A7-CLI/Image-dither.png ditherResImage
-save A7-CLI/Nature-dither.png ditherNatImage
+save A7-Output/Image-dither.png ditherResImage
+save A7-Output/Nature-dither.png ditherNatImage
 # Dither Split
 dither resImage ditherResImageSplit split 50
 dither natImage ditherNatImageSplit split 50
-save A7-CLI/Image-dither-split50.png ditherResImageSplit
-save A7-CLI/Nature-dither-split50.png ditherNatImageSplit
+save A7-Output/Image-dither-split50.png ditherResImageSplit
+save A7-Output/Nature-dither-split50.png ditherNatImageSplit
 # Histogram of Dither
 histogram ditherResImage ditherResHist
 histogram ditherNatImage ditherNatHist
-save A7-CLI/Image-dither-histogram.png ditherResHist
-save A7-CLI/Nature-dither-histogram.png ditherNatHist
+save A7-Output/Image-dither-histogram.png ditherResHist
+save A7-Output/Nature-dither-histogram.png ditherNatHist

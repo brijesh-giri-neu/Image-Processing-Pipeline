@@ -398,9 +398,8 @@ public class ControllerImpViewTest {
     ((MockView) gui).actionPerformed(mockEvent);
 
     assertTrue(log.toString().contains("Mock Open Split View Window called with uniqueCode: 22"));
-    assertTrue(log1.toString().contains(
-        "Input received - Src: imageName, DstName: "
-            + "tempImageName, Method: sharpen wrong percentage"));
+    assertTrue(log1.toString().contains("Input received - Src: imageName, DstName: "
+        + "tempImageName, Method: sharpen wrong percentage"));
 
   }
 
@@ -480,7 +479,7 @@ public class ControllerImpViewTest {
   }
 
   @Test
-  public void testDitherImageFeatures(){
+  public void testDitherImageFeatures() {
     StringBuilder modelLog = new StringBuilder();
     MockModel mockModel = new MockModel(modelLog, 22);
     Feature controller = new GUIController(mockModel);
@@ -495,7 +494,7 @@ public class ControllerImpViewTest {
   }
 
   @Test
-  public void testDitherImageFeaturesInvalid(){
+  public void testDitherImageFeaturesInvalid() {
     StringBuilder modelLog = new StringBuilder();
     MockModel mockModel = new MockModel(modelLog, 22);
     Feature controller = new GUIController(mockModel);
