@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -706,4 +707,117 @@ public class ModelImpTest {
       }
     }
   }
+//<<<<<<< Updated upstream
+//=======
+
+  @Test
+  public void testSplitCorrectnessDithering() {
+    model.splitImage("image", "image-c", 50, "dither");
+    int[][][] actual = model.getFromMap("image-c");
+    int[][][] expected = {
+        {{0, 0, 0}, {0, 255, 0}, {0, 0, 255}},
+        {{255, 255, 255}, {0, 255, 255}, {255, 0, 255}},
+        {{255, 255, 255}, {0, 255, 0}, {255, 255, 0}}
+    };
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        for (int k = 0; k < 3; k++) {
+          assertEquals(expected[i][j][k], actual[i][j][k]);
+        }
+      }
+    }
+  }
+
+  @Test
+  public void testSplitCorrectnessDithering0() {
+    model.splitImage("image", "image-c", 0, "dither");
+    int[][][] actual = model.getFromMap("image-c");
+    int[][][] expected = {
+        {{255, 0, 0}, {0, 255, 0}, {0, 0, 255}},
+        {{255, 255, 0}, {0, 255, 255}, {255, 0, 255}},
+        {{255, 0, 255}, {0, 255, 0}, {255, 255, 0}}
+    };
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        for (int k = 0; k < 3; k++) {
+          assertEquals(expected[i][j][k], actual[i][j][k]);
+        }
+      }
+    }
+  }
+
+  @Test
+  public void testSplitCorrectnessDithering100() {
+    model.splitImage("image", "image-c", 100, "dither");
+    int[][][] actual = model.getFromMap("image-c");
+    int[][][] expected = {
+        {{0, 0, 0}, {0, 0, 0}, {255, 255, 255}},
+        {{255, 255, 255}, {255, 255, 255}, {0, 0, 0}},
+        {{255, 255, 255}, {0, 0, 0}, {255, 255, 255}}
+    };
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        for (int k = 0; k < 3; k++) {
+          assertEquals(expected[i][j][k], actual[i][j][k]);
+        }
+      }
+    }
+  }
+
+  @Test (expected = NullPointerException.class)
+  public void testSplitCorrectnessDitheringLowBound() {
+    model.splitImage("image", "image-c", -50, "dither");
+    int[][][] actual = model.getFromMap("image-c");
+    int[][][] expected = {
+        {{85, 85, 85}, {0, 255, 0}, {0, 0, 255}},
+        {{170, 170, 170}, {0, 255, 255}, {255, 0, 255}},
+        {{170, 170, 170}, {0, 255, 0}, {255, 255, 0}}
+    };
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        for (int k = 0; k < 3; k++) {
+          assertEquals(expected[i][j][k], actual[i][j][k]);
+        }
+      }
+    }
+  }
+
+  @Test (expected = NullPointerException.class)
+  public void testSplitCorrectnessDitheringHighBound() {
+    model.splitImage("image", "image-c", 500, "dither");
+    int[][][] actual = model.getFromMap("image-c");
+    int[][][] expected = {
+        {{85, 85, 85}, {0, 255, 0}, {0, 0, 255}},
+        {{170, 170, 170}, {0, 255, 255}, {255, 0, 255}},
+        {{170, 170, 170}, {0, 255, 0}, {255, 255, 0}}
+    };
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        for (int k = 0; k < 3; k++) {
+          assertEquals(expected[i][j][k], actual[i][j][k]);
+        }
+      }
+    }
+  }
+
+  @Test
+  public void testDitherImagesCorrectness() throws FileNotFoundException {
+    model.ditherImage("image", "expected-koala");
+    int[][][] actual = model.getFromMap("expected-koala");
+    int[][][] expected = {
+        {{0, 0, 0}, {0, 0, 0}, {255, 255, 255}},
+        {{255, 255, 255}, {255, 255, 255}, {0, 0, 0}},
+        {{255, 255, 255}, {0, 0, 0}, {255, 255, 255}}
+    };
+
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        for (int k = 0; k < 3; k++) {
+          assertEquals(expected[i][j][k], actual[i][j][k]);
+        }
+      }
+    }
+  }
+
+//>>>>>>> Stashed changes
 }
