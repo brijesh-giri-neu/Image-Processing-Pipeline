@@ -1,11 +1,9 @@
 package controller;
 
-import javax.swing.JFrame;
-import view.GUIViewInterface;
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import view.GUIViewInterface;
 
 /**
  * A mock view class for testing the controller.
@@ -19,9 +17,10 @@ public class MockView extends JFrame implements ActionListener, GUIViewInterface
 
   /**
    * Constructor of the mock view.
-   * @param log the logger
+   *
+   * @param log        the logger
    * @param uniqueCode the unique code
-   * @param feature the feature associated with the view
+   * @param feature    the feature associated with the view
    */
   public MockView(StringBuilder log, int uniqueCode, Feature feature) {
     this.log = log;
@@ -31,10 +30,11 @@ public class MockView extends JFrame implements ActionListener, GUIViewInterface
 
   /**
    * Constructor of the mock view.
-   * @param log the logger
+   *
+   * @param log        the logger
    * @param uniqueCode the unique code
-   * @param feature the feature
-   * @param string the string associated with it
+   * @param feature    the feature
+   * @param string     the string associated with it
    */
   public MockView(StringBuilder log, int uniqueCode, Feature feature, String string) {
     this.log = log;
@@ -116,6 +116,9 @@ public class MockView extends JFrame implements ActionListener, GUIViewInterface
       case "Split View":
         openSplitViewWindow(string);
         break;
+      case "Dither Image":
+        ditherImage();
+        break;
       default:
         break;
     }
@@ -123,7 +126,7 @@ public class MockView extends JFrame implements ActionListener, GUIViewInterface
 
   private void displayMessage(String message) {
     log.append("displayMessage called with message: ").append(message)
-            .append(" and uniqueCode: ").append(uniqueCode);
+        .append(" and uniqueCode: ").append(uniqueCode);
     updateStatusMessage(message);
   }
 
@@ -255,6 +258,13 @@ public class MockView extends JFrame implements ActionListener, GUIViewInterface
     String message = feature.colorCorrect(args);
   }
 
+  private void ditherImage() {
+    log.append("Mock Dither Image called with uniqueCode: ").append(uniqueCode);
+    String[] args = {"imageName", "imageName2"};
+    String message = feature.ditherImage(args);
+    log.append(message);
+  }
+
   private void openSplitViewWindow(String operation) {
     performSplitViewOperation(operation);
     log.append("Mock Open Split View Window called with uniqueCode: ").append(uniqueCode);
@@ -292,6 +302,12 @@ public class MockView extends JFrame implements ActionListener, GUIViewInterface
     } else if ("levels-adjustment-Invalied".equals(operation)) {
       String[] args = {"10000000", "10000", "99990", "imageName", "tempImageName", "split", "10"};
       message = feature.adjustLevels(args);
+    } else if ("dither".equals(operation)) {
+      String[] args = {"imageName", "tempImageName", "split", "10"};
+      message = feature.ditherImage(args);
+    } else if ("dither-Invalid".equals(operation)) {
+      String[] args = {"imageName", "tempImageName", "split", "1000"};
+      message = feature.ditherImage(args);
     } else {
       String[] args = {"10", "10", "10", "imageName", "tempImageName", "split", "10"};
       message = feature.adjustLevels(args);

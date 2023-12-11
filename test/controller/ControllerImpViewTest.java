@@ -1,5 +1,6 @@
 package controller;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.event.ActionEvent;
@@ -438,5 +439,73 @@ public class ControllerImpViewTest {
         "Input received - Src: imageName, DstName: tempImageName, Method: Level-AdjIncorrect"));
     assertTrue(log1.toString().contains("Please enter againIncorrect value entered for m"));
 
+  }
+
+  @Test
+  public void testDitherImage() {
+    StringBuilder log = new StringBuilder();
+    StringBuilder log1 = new StringBuilder();
+
+    MockModel mockModel = new MockModel(log, 22);
+    Feature controller = new GUIController(mockModel);
+    GUIViewInterface gui = new MockView(log1, 22, controller);
+    ActionEvent mockEvent = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Dither Image");
+
+    ((MockView) gui).actionPerformed(mockEvent);
+    // Assert view logs. View got invoked correctly.
+    assertTrue(log1.toString().contains("Mock Dither Image called with uniqueCode: 22"));
+    assertTrue(log1.toString().contains("22 ditherImage"));
+    // Assert model logs. Model methods got invoked correctly.
+    assertTrue(log.toString().contains("Input received - Src: imageName, DstName: imageName2"));
+  }
+
+  @Test
+  public void testSplitViewDitherOperation() {
+    StringBuilder log1 = new StringBuilder();
+    StringBuilder log = new StringBuilder();
+    MockModel mockModel = new MockModel(log1, 22);
+    Feature controller = new GUIController(mockModel);
+    String operation = "dither";
+    GUIViewInterface gui = new MockView(log, 22, controller, operation);
+
+    ActionEvent mockEvent = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Split View");
+    ((MockView) gui).actionPerformed(mockEvent);
+
+    // Assert view logs. View got invoked correctly.
+    assertTrue(log.toString().contains("Mock Open Split View Window called with uniqueCode: 22"));
+    // Assert model logs. Model methods got invoked correctly.
+    assertTrue(log1.toString()
+        .contains("Input received - Src: imageName, DstName: tempImageName, Method: dither"));
+
+  }
+
+  @Test
+  public void testDitherImageFeatures(){
+    StringBuilder modelLog = new StringBuilder();
+    MockModel mockModel = new MockModel(modelLog, 22);
+    Feature controller = new GUIController(mockModel);
+    String output = controller.ditherImage(new String[]{"srcName", "dstName"});
+
+    // Assert model logs. Model received given inputs.
+    String expectedLog = "Input received - Src: srcName, DstName: dstName";
+    assertEquals(expectedLog, modelLog.toString());
+    // Assert the output sent to view.
+    String expectedOutput = "22 ditherImage";
+    assertEquals(expectedOutput, output);
+  }
+
+  @Test
+  public void testDitherImageFeaturesInvalid(){
+    StringBuilder modelLog = new StringBuilder();
+    MockModel mockModel = new MockModel(modelLog, 22);
+    Feature controller = new GUIController(mockModel);
+    String output = controller.ditherImage(new String[]{"srcName"});
+
+    // Assert model logs. Model received given inputs.
+    String expectedLog = "";
+    assertEquals(expectedLog, modelLog.toString());
+    // Assert the output sent to view.
+    String expectedOutput = "Invalid command\n";
+    assertEquals(expectedOutput, output);
   }
 }

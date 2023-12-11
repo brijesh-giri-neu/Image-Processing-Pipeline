@@ -957,9 +957,64 @@ public class ControllerImpTest {
     assertTrue(out.toString().contains("22 blurImage"));
     assertTrue(out.toString().contains("22 correctHistogram"));
     assertTrue(out.toString().contains("22 adjustLevels"));
-
-
   }
 
+  @Test
+  public void testDitherImage() {
+    StringBuilder log = new StringBuilder();
+    MockModel mockModel = new MockModel(log, 1);
+    Reader in = new StringReader("dither srcImage blurredImage\nexit");
+    Appendable out = new StringBuilder();
+    ControllerImp controller = new ControllerImp(mockModel, in, out);
+    controller.run(args);
 
+    // Assert model logs. This checks whether model methods got invoked correctly.
+    String expectedLog = "Input received - Src: srcImage, DstName: blurredImage";
+    assertEquals(expectedLog, log.toString());
+    // Assert the output sent to the view.
+    assertTrue(out.toString().contains("1 ditherImage"));
+  }
+
+  @Test
+  public void testDitherImageInvalied() {
+    StringBuilder log = new StringBuilder();
+    MockModel mockModel = new MockModel(log, 1);
+    Reader in = new StringReader("dither invalidcommend \nexit");
+    StringBuffer out = new StringBuffer();
+    ControllerImp controller = new ControllerImp(mockModel, in, out);
+    controller.run(args);
+
+    // Assert model logs. This checks whether model methods got invoked correctly.
+    String expectedLog = "";
+    assertEquals(expectedLog, log.toString());
+    // Assert the output sent to the view.
+    assertTrue(out.toString().contains("Invalid command"));
+  }
+
+  @Test
+  public void testSplitImageDither() {
+    StringBuilder log = new StringBuilder();
+    MockModel mockModel = new MockModel(log, 3);
+    Reader in = new StringReader("dither srcImage dstImage split 50\nexit");
+    Appendable out = new StringBuilder();
+    ControllerImp controller = new ControllerImp(mockModel, in, out);
+    controller.run(args);
+
+    String expectedLog = "Input received - Src: srcImage, DstName: dstImage, Method: dither";
+    assertEquals(expectedLog, log.toString());
+  }
+
+  @Test
+  public void testSplitImageDither_Invalid() {
+    StringBuilder log = new StringBuilder();
+    MockModel mockModel = new MockModel(log, 3);
+    Reader in = new StringReader("dither srcImage dstImage split -100\nexit");
+    Appendable out = new StringBuilder();
+    ControllerImp controller = new ControllerImp(mockModel, in, out);
+    controller.run(args);
+
+    String expectedLog = "Input received - Src: srcImage, DstName: dstImage, Method: dither";
+    assertTrue(log.toString().contains(expectedLog));
+    assertTrue(log.toString().contains("wrong percentage"));
+  }
 }
