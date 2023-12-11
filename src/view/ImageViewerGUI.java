@@ -55,7 +55,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener, GUIViewInt
   private final JMenuItem adjustLevelItem;
   private final JMenuItem colorCorrectItem;
   private final JMenuItem splitViewItem;
-
+  private final JMenuItem ditherItem;
   private final JFileChooser fileSelecter;
   private final String imageName;
   private final String tempImageName;
@@ -159,6 +159,10 @@ public class ImageViewerGUI extends JFrame implements ActionListener, GUIViewInt
     colorCorrectItem = new JMenuItem("Color Correct");
     colorCorrectItem.addActionListener(this);
     menu.add(colorCorrectItem);
+    // Dither image.
+    ditherItem = new JMenuItem("Dither Image");
+    ditherItem.addActionListener(this);
+    menu.add(ditherItem);
 
     splitViewItem = new JMenuItem("Split View");
     splitViewItem.addActionListener(this);
@@ -178,6 +182,8 @@ public class ImageViewerGUI extends JFrame implements ActionListener, GUIViewInt
     adjustLevelItem.setEnabled(false);
     colorCorrectItem.setEnabled(false);
     splitViewItem.setEnabled(false);
+    // Dither image.
+    ditherItem.setEnabled(false);
 
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(new Dimension(600, 400));
@@ -237,6 +243,10 @@ public class ImageViewerGUI extends JFrame implements ActionListener, GUIViewInt
         break;
       case "Split View":
         openSplitViewWindow();
+        break;
+      // Dither Image.
+      case "Dither Image":
+        ditherImage();
         break;
       default:
         showErrorMessage("Invalid option selected");
@@ -500,6 +510,8 @@ public class ImageViewerGUI extends JFrame implements ActionListener, GUIViewInt
     adjustLevelItem.setEnabled(true);
     colorCorrectItem.setEnabled(true);
     splitViewItem.setEnabled(true);
+    // Dither image.
+    ditherItem.setEnabled(true);
     textInfo.setVisible(false);
     textInfo2.setVisible(true);
   }
@@ -526,7 +538,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener, GUIViewInt
     JPanel inputPanel = new JPanel(new GridLayout(0, 2));
     JTextField percentageField = new JTextField(5);
     String[] operations = {"blur", "sharpen", "sepia", "greyscale", "color-correction",
-        "levels-adjustment"};
+        "levels-adjustment", "dither"};
     JComboBox<String> operationBox = new JComboBox<>(operations);
     operationBox.setSelectedItem(operations[0]);
     inputPanel.add(new JLabel("Split Percentage:"));
@@ -603,6 +615,10 @@ public class ImageViewerGUI extends JFrame implements ActionListener, GUIViewInt
       } else if ("color-correction".equals(operation)) {
         String[] args = {imageName, tempImageName, "split", percentage};
         message = feature.colorCorrect(args);
+      } else if ("dither".equals(operation)) {
+        // Dither image.
+        String[] args = {imageName, tempImageName, "split", percentage};
+        message = feature.ditherImage(args);
       } else {
         String bValue = bField.getText();
         String mValue = mField.getText();
@@ -640,6 +656,16 @@ public class ImageViewerGUI extends JFrame implements ActionListener, GUIViewInt
     );
     splitViewFrame.dispose();
     loadImageInUI(imageName);
+  }
+
+  private void ditherImage() {
+    String[] args = {imageName, imageName};
+    String message = feature.ditherImage(args);
+    if (message.contains("Dithered the Image")) {
+      loadImageInUI(imageName);
+    } else {
+      showErrorMessage(message);
+    }
   }
 }
 

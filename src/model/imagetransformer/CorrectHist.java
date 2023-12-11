@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Implements an ImageTransformer to perform histogram correction on an image by allying the peaks
- * of the R,G,B Histograms..
+ * of the R,G,B Histograms.
  */
 public class CorrectHist implements ImageTransformer {
 

@@ -20,7 +20,7 @@ public interface Feature {
    *
    * @param arguments the arguments required by the program to load the image
    * @return the appropriate message whether the image loaded successfully or there was some error
-   *        in loading the image.
+   *     in loading the image.
    */
   String loadImage(String[] arguments);
 
@@ -29,7 +29,7 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to save the image
    * @return the appropriate message whether the image loaded successfully or there was some error
-   *        in saving the image.
+   *     in saving the image.
    */
   String saveImage(String[] arguments);
 
@@ -38,7 +38,7 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to get the component of the image
    * @return the appropriate message whether the operation is successful or there was some error in
-   *        performing the operation
+   *     performing the operation
    */
   String componentImage(String[] arguments);
 
@@ -47,7 +47,7 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to flip the image
    * @return the appropriate message whether the operation is successful or there was some error in
-   *         performing the operation
+   *     performing the operation
    */
   String flipImage(String[] arguments);
 
@@ -56,7 +56,7 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to blur the image
    * @return the appropriate message whether the operation is successful or there was some error in
-   *        performing the operation
+   *     performing the operation
    */
   String blurImage(String[] arguments);
 
@@ -65,7 +65,7 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to blur the image
    * @return the appropriate message whether the operation is successful or there was some error in
-   *        performing the operation
+   *     performing the operation
    */
   String sharpenImage(String[] arguments);
 
@@ -74,7 +74,7 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to get the luma component of the image
    * @return the appropriate message whether the operation is successful or there was some error in
-   *        performing the operation
+   *     performing the operation
    */
   String convertToGrayscaleLuma(String[] arguments);
 
@@ -83,7 +83,7 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to convert the image to greyscale
    * @return the appropriate message whether the operation is successful or there was some error in
-   *        performing the operation
+   *     performing the operation
    */
   String convertToGreyScale(String[] arguments);
 
@@ -92,7 +92,7 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to convert the image to sepia tone
    * @return the appropriate message whether the operation is successful or there was some error in
-   *        performing the operation
+   *     performing the operation
    */
 
   String convertToSepiaTone(String[] arguments);
@@ -102,7 +102,7 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to get the greyscale version of the image
    * @return the appropriate message whether the operation is successful or there was some error in
-   *        performing the operation
+   *     performing the operation
    */
   String compressImage(String[] arguments);
 
@@ -112,7 +112,7 @@ public interface Feature {
    * @param arguments arguments required by the program to get the level adjusted version of the
    *                  image
    * @return the appropriate message whether the operation is successful or there was some error in
-   *        performing the operation
+   *     performing the operation
    */
   String adjustLevels(String[] arguments);
 
@@ -121,9 +121,18 @@ public interface Feature {
    *
    * @param arguments arguments required by the program to color correct the image
    * @return the appropriate message whether the operation is successful or there was some error in
-   *        performing the operation
+   *     performing the operation
    */
   String colorCorrect(String[] arguments);
+
+  /**
+   * Method to dither the image as requested by the user.
+   *
+   * @param arguments arguments required by the program to dither the image
+   * @return the appropriate message whether the operation is successful or there was some error in
+   *     performing the operation
+   */
+  String ditherImage(String[] arguments);
 
   /**
    * Method to get the histogram of the image as requested by the user.
@@ -141,6 +150,4 @@ public interface Feature {
    * @return the 3D array of the pixels of the image associated
    */
   int[][][] getImagePixels(String imageName);
-
-
 }

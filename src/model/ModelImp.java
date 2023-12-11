@@ -20,6 +20,7 @@ import model.imageflip.ImageFlipInterface;
 import model.imageflip.VerticalFlipper;
 import model.imagetransformer.BlurEffect;
 import model.imagetransformer.CorrectHist;
+import model.imagetransformer.DitherEffect;
 import model.imagetransformer.GreyscaleEffect;
 import model.imagetransformer.ImageTransformer;
 import model.imagetransformer.LevelAdj;
@@ -425,6 +426,21 @@ public class ModelImp implements Model {
     int[][][] image = images.get(srcKey);
     int[][][] correctHist = imageTransformer.transformer(image);
     images.put(dstKey, correctHist);
+    return "Successful";
+  }
+
+  // Added dithering method.
+  @Override
+  public String ditherImage(String srcKey, String dstKey) {
+    boolean check = checkIfExists(srcKey);
+    if (!check) {
+      return "The image doesn't exists in the map. Please load the image first";
+    }
+
+    ImageTransformer imageTransformer = new DitherEffect();
+    int[][][] image = images.get(srcKey);
+    int[][][] ditheredImage = imageTransformer.transformer(image);
+    images.put(dstKey, ditheredImage);
     return "Successful";
   }
 

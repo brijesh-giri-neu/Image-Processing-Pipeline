@@ -198,4 +198,13 @@ public interface Model {
 
   String adjustLevels(String srcKey, String dstKey, double b, double m, double w);
 
+  /**
+   * Function to apply a dithering effect to the given image and store the result in another image
+   * with the given name.
+   *
+   * @param srcKey The key of the source image in the map.
+   * @param dstKey The key under which the adjusted image will be stored.
+   * @return A string message indicating the success or failure of the operation.
+   */
+  String ditherImage(String srcKey, String dstKey);
 }

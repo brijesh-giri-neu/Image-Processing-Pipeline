@@ -199,5 +199,11 @@ public class MockModel implements Model {
     return uniqueCodeString + " adjustLevels";
   }
 
+  @Override
+  public String ditherImage(String scr, String dstname) {
+    log.append("Input received - Src: " + scr + ", DstName: " + dstname);
 
+    String uniqueCodeString = Integer.toString(uniqueCode);
+    return uniqueCodeString + " ditherImage";
+  }
 }

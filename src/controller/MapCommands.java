@@ -7,6 +7,7 @@ import commands.ColorCorrectCommand;
 import commands.CommandsInterface;
 
 import commands.CompressCommand;
+import commands.DitherCommand;
 import commands.GreenComponentCommand;
 import commands.GreyscaleCommand;
 import commands.HistogramCommand;
@@ -61,7 +62,8 @@ public class MapCommands {
     commandMap.put("color-correct", new ColorCorrectCommand(args));
     commandMap.put("levels-adjust", new LevelAdjustmentCommand(args));
     commandMap.put("greyscale", new GreyscaleCommand(args));
-
+    // Added Dithering
+    commandMap.put("dither", new DitherCommand(args));
   }
 
   /**

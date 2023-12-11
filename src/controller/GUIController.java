@@ -5,6 +5,7 @@ import commands.BlurCommand;
 import commands.ColorCorrectCommand;
 import commands.CommandsInterface;
 import commands.CompressCommand;
+import commands.DitherCommand;
 import commands.GreenComponentCommand;
 import commands.GreyscaleCommand;
 import commands.HistogramCommand;
@@ -136,6 +137,12 @@ public class GUIController implements Feature {
   }
 
   @Override
+  public String ditherImage(String[] arguments) {
+    CommandsInterface command = new DitherCommand(arguments);
+    return command.advance(model);
+  }
+
+  @Override
   public int[][][] getHistogram(String sourceImageName) {
     String[] arguments = {sourceImageName, "histogram"};
     CommandsInterface command = new HistogramCommand(arguments);
@@ -150,5 +157,4 @@ public class GUIController implements Feature {
   public int[][][] getImagePixels(String imageName) {
     return (model.getFromMap(imageName));
   }
-
 }

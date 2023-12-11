@@ -2,6 +2,7 @@ package model.imagechange;
 
 import model.imagetransformer.BlurEffect;
 import model.imagetransformer.CorrectHist;
+import model.imagetransformer.DitherEffect;
 import model.imagetransformer.GreyscaleEffect;
 import model.imagetransformer.ImageTransformer;
 import model.imagetransformer.LevelAdj;
@@ -83,6 +84,10 @@ public class ImageProcessor implements ImageSplit {
     }
     if ("color-correct".equalsIgnoreCase(method)) {
       imageTransformer = new CorrectHist();
+    }
+    // Added dithering case.
+    if ("dither".equalsIgnoreCase(method)) {
+      imageTransformer = new DitherEffect();
     }
 
     int[][][] changedImage = imageTransformer.transformer(image);
