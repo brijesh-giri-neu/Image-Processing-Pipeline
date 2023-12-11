@@ -1,0 +1,41 @@
+THIS IS A USEME FILE FOR BRIEFING ABOUT THE SCRIPT COMMANDS THAT ARE SUPPORTED BY OUR APPLICATION
+
+1. load image-path image-name: This particular command loads an image. This is the first command that needs to be run in order for the application to run or else there will not be any images where operations can take place. Only png, jpg and ppm images are supported.
+
+2.save image-path image-name: Save the image with the given name to the specified path which should include the name of the file. The file path provided must exist or it will throw an error. Only png, jpg and ppm images are supported.
+
+3. red-component image-name dest-image-name: Create an image with the red-component of the image with the given name, and refer to it henceforth in the program by the given destination name. Similar commands for green, blue, value, luma, intensity components are supported.
+
+4. horizontal-flip image-name dest-image-name: Flip an image horizontally to create a new image, referred to henceforth by the given destination name.
+
+5. vertical-flip image-name dest-image-name: Flip an image vertically to create a new image, referred to henceforth by the given destination name.
+
+6. brighten increment image-name dest-image-name: brighten the image by the given increment to create a new image, referred to henceforth by the given destination name. The increment may be positive (brightening) or negative (darkening).
+
+7. rgb-split image-name dest-image-name-red dest-image-name-green dest-image-name-blue: split the given image into three images containing its red, green and blue components respectively. These would be the same images that would be individually produced with the red-component, green-component and blue-component commands.
+
+8. rgb-combine image-name red-image green-image blue-image: Combine the three images that are individually red, green and blue into a single image that gets its red, green and blue components from the three images respectively.
+
+9. blur image-name dest-image-name: blur the given image and store the result in another image with the given name.
+
+10. sharpen image-name dest-image-name: sharpen the given image and store the result in another image with the given name.
+
+11. sepia image-name dest-image-name: produce a sepia-toned version of the given image and store the result in another image with the given name.
+
+12. run script-file: Load and run the script commands in the specified file. Only text files are supported.
+
+13. greyscale image-name dest-image-name: produce a greyscale version of the given image and store the result in another image with the given name.
+
+14. compress percentage image-name dest-image-name - Creates a compressed version of an image. Percentages between 0 and 100 are considered valid. Any other value passed will return in an error being generated
+
+15. histogram image-name dest-image-name - Creates an image that represents the histogram of a given image. The size of this image is 256x256.
+
+16. color-correct image-name dest-image-name - Creates the color-corrected image by aligning the meaningful peaks of its histogram.
+
+17. levels-adjust b m w image-name dest-image-name - adjust levels of an image where b, m and w are the three relevant black, mid and white values respectively. These values should be ascending in that order, and should be within 0 and 255 for this command to work correctly.
+
+18. The split command - This command supports the ability to specify a vertical line to generate a split view of operations. The operation support this are blur, sharpen, sepia, greyscale, color correction and levels adjustment. The script commands for these operations accommodate an optional parameter for the placement of the splitting line. For example, blur can be done by "blur image-name dest-image-name" or "blur image-name dest-image split p" in that order where 'p' is a percentage of the width (e.g. 50 means place the line halfway through the width of the image). The percentage should be between 0 to 100 or there is an error thrown by the code.
+
+19. -file name-of-script.txt - This command support the ability to accept a script file as a command-line option. If a valid file is provided, the program runs the script and exit. If the program is run without any command line options, then it allows interactive entry of script commands as before. Only text files are supported.
+
+20. dither image-name dest-image-name - Creates a dithered version of the image and stores the result in another image with given name.

@@ -1,0 +1,60 @@
+THIS FILE CONTAINS THE STEPS THAT NEED TO BE TAKEN TO USE THE GUI CREATED BY THE PROGRAM
+
+Steps:
+
+1. We have to load the image before doing anything until you load a image other opration will be disabled until you load it. 
+   To load the image we have to click on file and then click on load image
+
+2. after you load the image you can do the following oprations on the visible images
+
+   i. Save the currently visible image in PPM/JPG/PNG formats.
+      To save the image click on file and then save image
+
+   ii. Visualize the red/green/blue components of an image.
+       To visualize the file click on file and then click on the particular component that needs to be visualized
+
+   iii. Flip the image vertically or horizontally.
+	To flip the image click on file and then on the particular flip that needs to be performed.
+
+   iV. Blurring the image.
+       To blur the image click on file and then Blur Image
+
+   V. Sharpening the image.
+      To sharpen the image click on file and then Sharpen Image
+
+   Vi. Converting the image to greyscale using luma.
+       To convert the image to greyscale luma click on file and then click on Convert to Grayscale (Luma)
+
+   Vii. Converting the image to sepia.
+	To convert the image to sepia tome click on file and then click on Convert to Sepia Tone
+
+   Viii. Viewing the image with compression artifacts.
+	 To compress the image click on file and then Compress Image. It will ask you to enter compress percentage (this should be a value between 0-100 or an error popup will be thrown)
+
+   iX. Viewing the color-corrected version of this image.
+	To view the color-corrected version of the image click on File and then click on Color Correct.
+
+   X. Adjust levels of this image.
+      To adjust the level of the image click on file and then click on Adjust Levels. 
+      A pop up will come which will ask to enter the b value. The b value should be between 0 to 255
+      A pop up will come which will ask to enter the m value. The m value should be between 0 to 255 and that should be greater than b
+      A pop up will come which will ask to enter the w value. The w value should be between 0 to 255 and that should be greater than b and m
+      If the above condition isn't satisfied it will show an error pop up stating to enter the right value. Else it will update the image with the operation
+
+   Xi. Dither the image.
+      To dither the given image.
+
+   Xii. Be able to toggle between showing a split view and the entire image.
+	To perform this operation click on file and then click on split view. Please take note of the following things
+	a. There are 7 operations that are there which support this operation (Blur, sharpen, sepia, greyscale, color-correction, level-adjustment, and dither)
+	b. The split percentage should be between 0-100 and anything else entered will result in throwing of error when performing the operation
+	c. Any one operation can be selected from the drop down provided.
+	d. For level adjustment additional parameters will be prompted to input like mentioned above.
+	e. After you selected the operation and inputed the split percentage click on perform action to preview how the operation looks.
+	f. If you are satisfied you can click apply which will perform the operation on the entire image.
+	g. If you aren't you can choose other operation or click on the close window button to get back on the main window.
+
+The histogram associated with the image will always be avaiable with the image in the main window.
+
+
+All the above opration are in the form of drop down menu items
