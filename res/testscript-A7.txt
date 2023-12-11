@@ -1,0 +1,18 @@
+#load a png image file 
+load res/Image.png resImage
+load res/Nature.jpg natImage
+# Dither
+dither resImage ditherResImage
+dither natImage ditherNatImage
+save res/A7-CLI/Image-dither.png ditherResImage
+save res/A7-CLI/Nature-dither.png ditherNatImage
+# Dither Split
+dither resImage ditherResImageSplit split 50
+dither natImage ditherNatImageSplit split 50
+save res/A7-CLI/Image-dither-split50.png ditherResImageSplit
+save res/A7-CLI/Nature-dither-split50.png ditherNatImageSplit
+# Histogram of Dither
+histogram ditherResImage ditherResHist
+histogram ditherNatImage ditherNatHist
+save res/A7-CLI/Image-dither-histogram.png ditherResHist
+save res/A7-CLI/Nature-dither-histogram.png ditherNatHist
